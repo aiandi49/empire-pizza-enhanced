@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empire Pizza — Downtown Tucson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d0b08;
+  --ink2: #1e1810;
+  --cream: #f5ede0;
+  --cream2: #ede3d1;
+  --cream3: #e0d4bf;
+  --ember: #c0321a;
+  --ember2: #e03c20;
+  --ember-dark: #8a2210;
+  --gold: #b8892a;
+  --gold2: #d4a843;
+  --gold-dim: #7a5c1e;
+  --sage: #4a5c42;
+  --muted: rgba(13,11,8,0.45);
+  --border: rgba(13,11,8,0.1);
+  --border2: rgba(13,11,8,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ═══ NOISE TEXTURE ═══ */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 1: CINEMATIC HERO
+═══════════════════════════════════════════ */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-slides {
+  position: absolute; inset: 0;
+}
+
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.hero-slide.active { opacity: 1; }
+
+.hero-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  animation: heroZoom 12s ease-in-out forwards;
+  filter: brightness(1.12) saturate(1.25) contrast(1.05);
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1.0); }
+}
+
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(13,11,8,0.78) 0%, rgba(13,11,8,0.18) 35%, rgba(13,11,8,0.0) 65%, rgba(13,11,8,0.12) 100%),
+    linear-gradient(to right, rgba(13,11,8,0.35) 0%, transparent 50%);
+}
+
+.hero-nav {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(13,11,8,0.65) 0%, transparent 100%);
+}
+
+.hero-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  text-decoration: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 12px rgba(0,0,0,0.7);
+}
+
+.hero-logo span { color: var(--ember2); }
+
+.hero-nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+
+.hero-nav-links a {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(245,237,224,0.95); text-decoration: none;
+  transition: color 0.2s;
+  text-shadow: 0 1px 4px rgba(0,0,0,1), 0 2px 10px rgba(0,0,0,0.9);
+}
+
+.hero-nav-links a:hover { color: var(--cream); }
+
+.hero-cta-nav {
+  background: var(--ember);
+  color: var(--cream);
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 10px 20px; border: none; cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.hero-cta-nav:hover { background: var(--ember2); }
+
+.hero-content {
+  position: relative; z-index: 5;
+  padding: 0 48px 72px;
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 20px;
+  display: inline-flex; align-items: center; gap: 14px;
+  background: rgba(13,11,8,0.72);
+  padding: 7px 16px 7px 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 40px; height: 1px; background: var(--gold2);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 10vw, 130px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--cream);
+  margin-bottom: 28px;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.9),
+    0 4px 16px rgba(0,0,0,0.8),
+    0 8px 40px rgba(0,0,0,0.6);
+}
+
+.hero-title em {
+  font-style: italic; color: var(--ember2);
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.9),
+    0 4px 20px rgba(0,0,0,0.7);
+}
+
+.hero-sub {
+  font-size: 12px; letter-spacing: 0.1em; line-height: 1.8;
+  color: rgba(245,237,224,0.95);
+  max-width: 480px;
+  margin-bottom: 36px;
+  text-shadow: 0 1px 3px rgba(0,0,0,1), 0 2px 12px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.7);
+}
+
+.hero-btns {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--ember);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 16px 32px;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: background 0.2s, transform 0.1s;
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: '→';
+  transition: transform 0.2s;
+}
+.btn-primary:hover { background: var(--ember2); }
+.btn-primary:hover::after { transform: translateX(4px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 15px 32px;
+  border: 1px solid rgba(245,237,224,0.3); cursor: pointer;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all 0.2s;
+}
+.btn-ghost:hover {
+  border-color: rgba(245,237,224,0.7);
+  background: rgba(245,237,224,0.06);
+}
+
+.hero-indicators {
+  position: absolute;
+  right: 48px; bottom: 80px;
+  display: flex; flex-direction: column; gap: 8px; z-index: 10;
+}
+
+.hero-dot {
+  width: 2px; height: 24px; background: rgba(245,237,224,0.25);
+  cursor: pointer; transition: all 0.3s;
+}
+.hero-dot.active {
+  height: 40px; background: var(--ember2);
+}
+
+.hero-scroll {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,237,224,0.4); z-index: 10;
+}
+
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(245,237,224,0.4), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.4; }
+  50% { transform: scaleY(0.5); opacity: 0.8; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 2: STORY TICKER / MARQUEE
+═══════════════════════════════════════════ */
+.ticker-bar {
+  background: var(--ember-dark);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.ticker-inner {
+  display: inline-flex; gap: 0;
+  animation: tickerScroll 28s linear infinite;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245,237,224,0.8);
+  padding: 0 40px;
+  display: inline-flex; align-items: center; gap: 40px;
+}
+
+.ticker-item::after {
+  content: '✦';
+  color: var(--gold2);
+  font-size: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 3: IDENTITY / ABOUT
+═══════════════════════════════════════════ */
+#identity {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.identity-bg-num {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 400px;
+  color: rgba(13,11,8,0.04);
+  line-height: 1;
+  right: -20px; top: -40px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.identity-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ember); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.identity-label::after {
+  content: ''; flex: 1; height: 1px; background: rgba(13,11,8,0.15);
+}
+
+.identity-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+
+.identity-headline em {
+  font-style: italic; color: var(--ember);
+}
+
+.identity-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: rgba(13,11,8,0.7);
+  margin-bottom: 40px;
+}
+
+.identity-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+
+.stat-block {
+  border-left: 2px solid var(--ember);
+  padding-left: 16px;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; letter-spacing: 0.04em;
+  color: var(--ink); line-height: 1;
+}
+
+.stat-label {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin-top: 4px;
+}
+
+.identity-img-stack {
+  position: relative; height: 520px;
+}
+
+.istack-img {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(13,11,8,0.2);
+}
+
+.istack-img:nth-child(1) {
+  width: 75%; height: 75%;
+  top: 0; right: 0;
+}
+
+.istack-img:nth-child(2) {
+  width: 55%; height: 55%;
+  bottom: 0; left: 0;
+  border: 4px solid var(--cream);
+}
+
+.istack-caption {
+  position: absolute;
+  bottom: 55%; right: 74%;
+  transform: translate(50%, 50%);
+  background: var(--ember);
+  color: var(--cream);
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 4: PIZZA GALLERY
+═══════════════════════════════════════════ */
+#gallery {
+  background: var(--ink2);
+  padding: 120px 48px;
+  position: relative;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.gallery-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 16px;
+}
+
+.gallery-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--cream);
+  letter-spacing: -1px;
+}
+
+.gallery-title em { font-style: italic; color: var(--ember2); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+}
+
+.gallery-card:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  aspect-ratio: auto;
+}
+
+.gallery-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,11,8,0.85) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex; align-items: flex-end;
+  padding: 28px;
+}
+
+.gallery-card:hover .gallery-card-overlay { opacity: 1; }
+
+.gallery-card-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.gallery-card-sub {
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold2); margin-top: 6px;
+}
+
+/* Featured badge on first card */
+.gallery-card:nth-child(1) .gallery-card-overlay {
+  opacity: 1;
+  background: linear-gradient(to top, rgba(13,11,8,0.9) 0%, rgba(13,11,8,0.3) 40%, transparent 70%);
+}
+
+.gallery-card:nth-child(1) .gallery-card-label {
+  font-size: 36px;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 5: MENU MODULE
+═══════════════════════════════════════════ */
+#menu {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 120px 48px;
+}
+
+.menu-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+  max-width: 1100px;
+  margin: 0 auto 64px;
+  gap: 32px;
+}
+
+.menu-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -1px;
+}
+
+.menu-title em { font-style: italic; color: var(--ember); }
+
+.menu-tabs {
+  display: flex; gap: 4px;
+}
+
+.menu-tab {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: all 0.2s;
+}
+
+.menu-tab.active, .menu-tab:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--cream);
+}
+
+.menu-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+
+/* Pies grid */
+.pies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+}
+
+.pie-card {
+  background: var(--cream2);
+  padding: 32px;
+  display: flex; flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.pie-card:hover {
+  background: var(--cream3);
+  border-left-color: var(--ember);
+}
+
+.pie-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.16em;
+  color: var(--ember);
+}
+
+.pie-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.pie-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: rgba(13,11,8,0.6);
+  line-height: 1.6;
+}
+
+.pie-ingredients {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px;
+}
+
+.ing-tag {
+  font-size: 9px; letter-spacing: 0.1em;
+  padding: 4px 9px;
+  background: rgba(13,11,8,0.07);
+  color: var(--muted);
+  border-radius: 1px;
+  text-transform: uppercase;
+}
+
+/* Elote featured */
+.pie-card.featured {
+  background: var(--ink);
+  color: var(--cream);
+  border-left-color: var(--gold2);
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+  gap: 0;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.elote-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.elote-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(1.08) saturate(1.2);
+  transition: transform 0.7s ease;
+}
+
+.pie-card.featured:hover .elote-img-wrap img {
+  transform: scale(1.04);
+}
+
+.elote-img-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, var(--ink) 100%);
+}
+
+.elote-text {
+  padding: 40px 40px 40px 32px;
+  display: flex; flex-direction: column; gap: 14px;
+  justify-content: center;
+}
+
+.pie-card.featured .pie-name { color: var(--cream); font-size: 52px; }
+.pie-card.featured .pie-desc { color: rgba(245,237,224,0.7); font-size: 17px; }
+.pie-card.featured .ing-tag { background: rgba(245,237,224,0.1); color: rgba(245,237,224,0.6); }
+.pie-card.featured .pie-number { color: var(--gold2); font-size: 14px; }
+.pie-card.featured:hover { background: var(--ink); }
+
+@media (max-width: 700px) {
+  .pie-card.featured { grid-template-columns: 1fr; }
+  .elote-img-wrap { height: 280px; }
+  .elote-img-fade { background: linear-gradient(to bottom, transparent 60%, var(--ink) 100%); }
+}
+
+.elote-badge {
+  display: inline-flex;
+  align-items: center; gap: 8px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 5px 12px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+}
+
+/* Specials panel */
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.special-card {
+  border: 1px solid var(--border2);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.special-card:hover {
+  border-color: var(--ember);
+  transform: translateY(-2px);
+}
+
+.special-icon { font-size: 28px; }
+.special-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--ink);
+}
+
+.special-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 6: ORDER MODULE (inspired by existing)
+═══════════════════════════════════════════ */
+#order {
+  background: var(--ink);
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.order-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(192,50,26,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.order-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 80px;
+  align-items: center;
+}
+
+.order-left {}
+.order-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ember2); margin-bottom: 20px;
+}
+
+.order-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--cream);
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+}
+
+.order-title em { font-style: italic; }
+
+.order-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: rgba(245,237,224,0.6);
+  margin-bottom: 40px;
+  max-width: 420px;
+}
+
+.order-features {
+  display: flex; flex-direction: column; gap: 16px;
+  margin-bottom: 40px;
+}
+
+.order-feature {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 12px; letter-spacing: 0.08em;
+  color: rgba(245,237,224,0.65);
+}
+
+.feature-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ember2); flex-shrink: 0;
+}
+
+.order-card {
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+
+.order-card-img {
+  height: 260px;
+  position: relative; overflow: hidden;
+}
+
+.order-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 8s ease;
+}
+.order-card-img:hover img { transform: scale(1.05); }
+
+.order-card-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,11,8,0.7) 0%, transparent 60%);
+}
+
+.order-card-img-label {
+  position: absolute; bottom: 20px; left: 24px;
+}
+
+.order-card-img-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; font-style: italic;
+  color: var(--cream); line-height: 1;
+}
+
+.order-card-img-sub {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(245,237,224,0.65); margin-top: 4px;
+}
+
+.order-card-body {
+  padding: 28px;
+}
+
+.order-card-stripe {
+  background: var(--ink);
+  margin: -28px -28px 24px -28px;
+  padding: 12px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.order-card-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 0.12em;
+  color: var(--cream);
+}
+.order-card-logo span { color: var(--ember2); }
+
+.order-card-tag {
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,237,224,0.4);
+}
+
+.fulfilment-opts {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 20px;
+}
+
+.f-opt {
+  border: 1px solid var(--border2);
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 14px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.f-opt::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--ember);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.2s ease;
+}
+
+.f-opt:hover { border-color: rgba(192,50,26,0.3); }
+.f-opt.active { border-color: rgba(192,50,26,0.4); background: rgba(192,50,26,0.03); }
+.f-opt.active::before { transform: scaleY(1); }
+
+.f-radio {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: border-color 0.2s;
+}
+.f-opt.active .f-radio { border-color: var(--ember); }
+.f-radio-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ember);
+  transform: scale(0); transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.f-opt.active .f-radio-dot { transform: scale(1); }
+
+.f-info-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink);
+}
+
+.f-info-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: rgba(13,11,8,0.6); margin-top: 2px;
+}
+
+.order-action-bar {
+  display: flex; gap: 10px; margin-top: 4px;
+}
+
+.qty-ctrl {
+  display: flex; align-items: center;
+  border: 1px solid var(--border2); overflow: hidden;
+}
+
+.qty-b {
+  width: 40px; height: 52px; border: none; background: var(--cream2);
+  color: var(--ink); font-size: 20px; cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-b:hover { background: var(--cream3); }
+
+.qty-divider { width: 1px; background: var(--border); height: 52px; }
+
+.qty-display {
+  width: 44px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+}
+
+.add-btn {
+  flex: 1;
+  background: var(--ember);
+  color: var(--cream);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  font-family: 'DM Mono', monospace;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
+}
+.add-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+.add-btn:hover { background: var(--ember-dark); }
+
+.add-btn-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.add-btn-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 7: HOURS & LOCATION
+═══════════════════════════════════════════ */
+#location {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--ember);
+}
+
+.location-bg-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center center;
+  filter: brightness(0.32) saturate(0.9);
+}
+
+.location-inner {
+  position: relative; z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: 560px;
+}
+
+.location-divider {
+  background: rgba(245,237,224,0.08);
+  margin: 60px 0;
+}
+
+.location-left {
+  padding: 80px 64px 80px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+.location-right {
+  padding: 80px 48px 80px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 0;
+}
+
+.location-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ember2); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.location-eyebrow::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--ember2);
+}
+
+.location-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 6vw, 88px);
+  font-weight: 900; line-height: 0.92;
+  letter-spacing: -2px;
+  color: var(--cream);
+  margin-bottom: 48px;
+}
+
+.hours-list {
+  display: flex; flex-direction: column; gap: 0;
+}
+
+.hours-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(245,237,224,0.08);
+}
+
+.hours-day {
+  color: rgba(245,237,224,0.45);
+  text-transform: uppercase; font-size: 9px; letter-spacing: 0.18em;
+}
+.hours-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600; color: var(--cream);
+}
+.hours-late {
+  font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase;
+  background: var(--ember); color: var(--cream);
+  padding: 3px 8px; margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Right column */
+.loc-address-block {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(245,237,224,0.08);
+}
+
+.loc-address-block:last-child { border-bottom: none; }
+
+.info-label {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ember2); margin-bottom: 10px;
+}
+.info-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; line-height: 1.15;
+  color: var(--cream);
+}
+.info-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; color: rgba(245,237,224,0.5); margin-top: 6px;
+}
+
+.location-ctas {
+  display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap;
+}
+
+.loc-btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ember);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 14px 24px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.loc-btn-primary:hover { background: var(--ember2); }
+
+.loc-btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(245,237,224,0.25);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 13px 24px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.loc-btn-ghost:hover {
+  border-color: rgba(245,237,224,0.6);
+  background: rgba(245,237,224,0.06);
+}
+
+.contact-bar { display: none; }
+.contact-pill { display: none; }
+.location-map-placeholder { display: none; }
+.map-label { display: none; }
+.location-info { display: contents; }
+.info-block { display: contents; }
+
+@media (max-width: 900px) {
+  .location-inner { grid-template-columns: 1fr; }
+  .location-divider { display: none; }
+  .location-left, .location-right { padding: 60px 24px; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 8: CINEMATIC FOOTER BANNER
+═══════════════════════════════════════════ */
+#full-banner {
+  height: 60vh; min-height: 440px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.banner-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(13,11,8,0.6) 0%, transparent 40%);
+}
+
+.banner-content {
+  position: relative; z-index: 5;
+  text-align: center;
+  padding: 0 48px;
+}
+
+.banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 14vw, 180px);
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  line-height: 0.85;
+  margin-bottom: 24px;
+}
+
+.banner-title span { color: var(--ember2); display: block; }
+
+.banner-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-style: italic;
+  color: rgba(245,237,224,0.7);
+  margin-bottom: 36px;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 60px 48px 40px;
+  border-top: 1px solid rgba(245,237,224,0.06);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(245,237,224,0.06);
+  margin-bottom: 28px;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; letter-spacing: 0.18em;
+  color: var(--cream);
+}
+.footer-logo span { color: var(--ember2); }
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(245,237,224,0.45);
+  margin-top: 4px;
+}
+
+.footer-links {
+  display: flex; flex-direction: column; gap: 10px; text-align: right;
+}
+
+.footer-links a {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(245,237,224,0.45); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--cream); }
+
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: rgba(245,237,224,0.25);
+}
+
+.footer-bottom span { color: rgba(245,237,224,0.15); }
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS / ENTRANCE
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Flash qty animation */
+.flash { animation: flash 0.3s ease; }
+@keyframes flash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Ripple */
+.ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: scale(0);
+  animation: ripple 0.5s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .identity-grid, .order-inner, .location-inner { grid-template-columns: 1fr; gap: 48px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-card:nth-child(1) { grid-column: 1 / -1; grid-row: auto; height: 400px; }
+  .hero-nav-links { display: none; }
+  .pie-card.featured { grid-column: span 1; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-links { text-align: left; }
+}
+
+@media (max-width: 600px) {
+  #hero, #identity, #gallery, #menu, #order, #location { padding-left: 24px; padding-right: 24px; }
+  .hero-nav { padding: 20px 24px; }
+  .hero-content { padding: 0 24px 56px; }
+  .hero-indicators { display: none; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  footer { padding: 40px 24px; }
+}
+
+/* ─── Pizza Selector Chips ─── */
+.pizza-selector-label {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ember); margin-bottom: 10px; margin-top: 4px;
+}
+
+.pizza-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 14px;
+}
+
+.pizza-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--border2);
+  background: var(--cream2);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.pizza-chip:hover {
+  border-color: var(--ember);
+  background: var(--cream);
+}
+
+.pizza-chip.active {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--cream);
+}
+
+.pizza-chip.featured-chip {
+  border-color: var(--gold);
+}
+
+.pizza-chip.featured-chip.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+/* ─── Ingredients row ─── */
+.order-ing-row {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-bottom: 14px; min-height: 22px;
+}
+
+.order-ing-tag {
+  font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 8px;
+  background: rgba(13,11,8,0.06);
+  color: var(--muted);
+  border-radius: 1px;
+  animation: tagIn 0.2s ease;
+}
+
+@keyframes tagIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Cart items ─── */
+.cart-items {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 8px;
+}
+
+.cart-item {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; padding: 8px 10px;
+  background: var(--cream2);
+  border-left: 2px solid var(--ember);
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; }
+.cart-item-qty { color: var(--muted); font-size: 10px; }
+.cart-item-price { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; }
+.cart-item-remove {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 14px; padding: 0 4px;
+  transition: color 0.2s;
+}
+.cart-item-remove:hover { color: var(--ember); }
+
+/* ─── Cart total ─── */
+.cart-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0 4px;
+  border-top: 1px solid var(--border2);
+  margin-top: 4px;
+}
+
+.cart-total-label {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cart-total-amt {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; color: var(--ember);
+}
+
+
+/* ─── LIGHTBOX ─── */
+.gallery-card { cursor: zoom-in; }
+
+#lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 99999;
+  background: rgba(13,11,8,0.96);
+  align-items: center; justify-content: center;
+  animation: lbFadeIn 0.25s ease;
+}
+
+#lightbox.open { display: flex; }
+
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#lightbox-img {
+  max-width: 92vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  animation: lbZoomIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes lbZoomIn {
+  from { transform: scale(0.88); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+#lightbox-caption {
+  position: absolute;
+  bottom: 32px; left: 50%; transform: translateX(-50%);
+  text-align: center;
+}
+
+#lightbox-caption .lb-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; font-style: italic;
+  color: var(--cream);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+#lightbox-caption .lb-sub {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold2); margin-top: 6px;
+}
+
+#lightbox-close {
+  position: absolute; top: 24px; right: 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(245,237,224,0.6);
+  background: none; border: 1px solid rgba(245,237,224,0.2);
+  padding: 8px 16px; cursor: pointer;
+  transition: all 0.2s;
+}
+#lightbox-close:hover { color: var(--cream); border-color: rgba(245,237,224,0.6); }
+
+#lightbox-prev, #lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(13,11,8,0.6);
+  border: 1px solid rgba(245,237,224,0.15);
+  color: var(--cream); font-size: 22px;
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s;
+  user-select: none;
+}
+#lightbox-prev { left: 24px; }
+#lightbox-next { right: 24px; }
+#lightbox-prev:hover, #lightbox-next:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" id="slide-0">
+      <img src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg" alt="Empire Pizza" id="heroImg0">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide" id="slide-1">
+      <img src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/05_margherita.jpg" alt="Empire Pizza" id="heroImg1">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide" id="slide-2">
+      <img src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/01_bensonhurst.jpg" alt="Empire Pizza" id="heroImg2">
+      <div class="hero-overlay"></div>
+    </div>
+  </div>
+
+  <nav class="hero-nav">
+    <a href="#" class="hero-logo">EMPIRE<span>●</span>PIZZA</a>
+    <ul class="hero-nav-links">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#location">Visit</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+    <a href="#order" class="hero-cta-nav">Order Online</a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 2009 · Downtown Tucson · Historic Congress District</div>
+    <h1 class="hero-title">
+      New York.<br>
+      <em>Downtown.</em><br>
+      Legendary.
+    </h1>
+    <p class="hero-sub">Tucson's only authentic New York style pizza. Hand-tossed dough, Grande 100% whole-milk mozzarella, and flavors that hit like a Frank Sinatra ballad — smooth, unforgettable, undeniably Empire.</p>
+    <div class="hero-btns">
+      <a href="#order" class="btn-primary">Order Now</a>
+      <a href="#menu" class="btn-ghost">View Menu</a>
+    </div>
+  </div>
+
+  <div class="hero-indicators">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Open Daily 11am</span>
+    <span class="ticker-item">137 E Congress St · Tucson AZ</span>
+    <span class="ticker-item">Grande 100% Whole-Milk Mozzarella</span>
+    <span class="ticker-item">Hand-Tossed Fresh Daily</span>
+    <span class="ticker-item">Happy Hour 4–7pm Daily · All Day Sunday</span>
+    <span class="ticker-item">Call for Pickup: (520) 882-7499</span>
+    <span class="ticker-item">Fri &amp; Sat Open Until 3am</span>
+    <span class="ticker-item">Old World Bar &amp; Dining</span>
+    <span class="ticker-item">Open Daily 11am</span>
+    <span class="ticker-item">137 E Congress St · Tucson AZ</span>
+    <span class="ticker-item">Grande 100% Whole-Milk Mozzarella</span>
+    <span class="ticker-item">Hand-Tossed Fresh Daily</span>
+    <span class="ticker-item">Happy Hour 4–7pm Daily · All Day Sunday</span>
+    <span class="ticker-item">Call for Pickup: (520) 882-7499</span>
+    <span class="ticker-item">Fri &amp; Sat Open Until 3am</span>
+    <span class="ticker-item">Old World Bar &amp; Dining</span>
+  </div>
+</div>
+
+<!-- ═══ IDENTITY ═══ -->
+<section id="identity">
+  <div class="identity-bg-num">2009</div>
+
+  <div class="identity-grid">
+    <div class="reveal">
+      <div class="identity-label">Our Story</div>
+      <h2 class="identity-headline">
+        Slice of New York in the<br>
+        <em>Heart of Tucson</em>
+      </h2>
+      <p class="identity-body">
+        Empire Pizza was born in 2009 with one obsession: to bring a true, no-compromise New York style pizza to the Sonoran Desert. Every pie is prepared from scratch — dough made fresh daily, loaded with the finest ingredients, crowned with 100% Grande Mozzarella. This is the real thing.
+      </p>
+      <div class="identity-stats">
+        <div class="stat-block reveal reveal-delay-1">
+          <div class="stat-num">2009</div>
+          <div class="stat-label">Year Established</div>
+        </div>
+        <div class="stat-block reveal reveal-delay-2">
+          <div class="stat-num">20"</div>
+          <div class="stat-label">Whole Pies</div>
+        </div>
+        <div class="stat-block reveal reveal-delay-3">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Grande Mozzarella</div>
+        </div>
+        <div class="stat-block reveal reveal-delay-4">
+          <div class="stat-num">NYC</div>
+          <div class="stat-label">Soul, Tucson Heart</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="identity-img-stack reveal reveal-delay-2">
+      <img class="istack-img" id="identityImg1" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg" alt="Empire Pizza">
+      <img class="istack-img" id="identityImg2" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/04_cheese.jpg" alt="Empire Pizza detail">
+      <div class="istack-caption">Downtown Since 2009</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="gallery-eyebrow">The Pies · The Legend</div>
+    <h2 class="gallery-title">Every Pie,<br><em>A Masterpiece.</em></h2>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-card reveal" onclick="openLightbox(0)">
+      <img id="galleryImg1" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/01_bensonhurst.jpg" alt="Signature Pizza">
+      <div class="gallery-card-overlay">
+        <div>
+          <div class="gallery-card-label">The Empire<br>Signature</div>
+          <div class="gallery-card-sub">Hand-Tossed · Grande Cheese · Daily Fresh</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card reveal reveal-delay-1" onclick="openLightbox(1)">
+      <img id="galleryImg2" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg" alt="Elote Pizza">
+      <div class="gallery-card-overlay">
+        <div>
+          <div class="gallery-card-label">The Elote</div>
+          <div class="gallery-card-sub">Tucson's Favorite · As Seen on Tucson Foodie</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card reveal reveal-delay-2" onclick="openLightbox(2)">
+      <img id="galleryImg3" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/05_margherita.jpg" alt="Chelsea Pizza">
+      <div class="gallery-card-overlay">
+        <div>
+          <div class="gallery-card-label">The Chelsea</div>
+          <div class="gallery-card-sub">Mushroom · Pepper · Olive · Garlic</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card reveal reveal-delay-3" onclick="openLightbox(3)">
+      <img id="galleryImg4" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/01_bensonhurst.jpg" alt="Bensonhurst">
+      <div class="gallery-card-overlay">
+        <div>
+          <div class="gallery-card-label">The Bensonhurst</div>
+          <div class="gallery-card-sub">Pepperoni · Bacon · Prosciutto · Sausage</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card reveal reveal-delay-4" onclick="openLightbox(4)">
+      <img id="galleryImg5" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/04_cheese.jpg" alt="Mulberry St">
+      <div class="gallery-card-overlay">
+        <div>
+          <div class="gallery-card-label">Mulberry St.</div>
+          <div class="gallery-card-sub">Pepperoni · Sausage · Mushroom · Pepper</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MENU ═══ -->
+<section id="menu">
+  <div class="menu-header">
+    <div class="reveal">
+      <h2 class="menu-title">The Menu.<br><em>No Compromises.</em></h2>
+    </div>
+    <div class="menu-tabs reveal">
+      <button class="menu-tab active" onclick="switchTab('pies', this)">The Pies</button>
+      <button class="menu-tab" onclick="switchTab('specials', this)">Specials & More</button>
+    </div>
+  </div>
+
+  <div class="menu-content">
+    <div class="menu-panel active" id="panel-pies">
+      <div class="pies-grid">
+        <div class="pie-card featured reveal">
+          <div class="elote-img-wrap">
+            <img id="eloteMenuImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg" alt="The Elote Pizza">
+            <div class="elote-img-fade"></div>
+          </div>
+          <div class="elote-text">
+            <div class="elote-badge">★ Pizza of the Month — Permanent Addition</div>
+            <div class="pie-number">01</div>
+            <div class="pie-name">The Elote</div>
+            <div class="pie-desc">Roasted corn, Cotija cheese blend, fresh cilantro, and chipotle mayo. The pie that stopped Tucson in its tracks — featured by Tucson Foodie, loved by everyone who tries it. This is Tucson's pizza.</div>
+            <div class="pie-ingredients">
+              <span class="ing-tag">Roasted Corn</span>
+              <span class="ing-tag">Cotija Cheese</span>
+              <span class="ing-tag">Fresh Cilantro</span>
+              <span class="ing-tag">Chipotle Mayo</span>
+            </div>
+          </div>
+        </div>
+        <div class="pie-card reveal reveal-delay-1">
+          <div class="pie-number">02</div>
+          <div class="pie-name">Pepperoni</div>
+          <div class="pie-desc">Premium pepperoni that curls and crisps in our oven. A love letter to New York's most iconic slice.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Pepperoni</span>
+            <span class="ing-tag">Grande Mozz</span>
+          </div>
+        </div>
+        <div class="pie-card reveal reveal-delay-2">
+          <div class="pie-number">03</div>
+          <div class="pie-name">Cheese</div>
+          <div class="pie-desc">The cornerstone. Vine-ripened tomato sauce, Grande whole-milk mozzarella, fresh-made dough. Pure New York.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Grande Mozz</span>
+            <span class="ing-tag">Tomato Sauce</span>
+          </div>
+        </div>
+        <div class="pie-card reveal">
+          <div class="pie-number">04</div>
+          <div class="pie-name">Margherita</div>
+          <div class="pie-desc">Garlic, fresh basil, and fresh mozzarella. The holy trinity of simplicity done right.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Garlic</span>
+            <span class="ing-tag">Fresh Basil</span>
+            <span class="ing-tag">Fresh Mozz</span>
+          </div>
+        </div>
+        <div class="pie-card reveal reveal-delay-1">
+          <div class="pie-number">05</div>
+          <div class="pie-name">Chelsea</div>
+          <div class="pie-desc">A downtown Manhattan classic reborn. Garden-fresh with a savory, briny depth.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Mushroom</span>
+            <span class="ing-tag">Green Pepper</span>
+            <span class="ing-tag">Onion</span>
+            <span class="ing-tag">Kalamata Olive</span>
+            <span class="ing-tag">Garlic</span>
+          </div>
+        </div>
+        <div class="pie-card reveal reveal-delay-2">
+          <div class="pie-number">06</div>
+          <div class="pie-name">Mulberry St.</div>
+          <div class="pie-desc">Named for the beating heart of Little Italy. Loaded, layered, legendary.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Pepperoni</span>
+            <span class="ing-tag">Italian Sausage</span>
+            <span class="ing-tag">Green Pepper</span>
+            <span class="ing-tag">Onion</span>
+            <span class="ing-tag">Mushrooms</span>
+          </div>
+        </div>
+        <div class="pie-card reveal reveal-delay-1">
+          <div class="pie-number">07</div>
+          <div class="pie-name">Bensonhurst</div>
+          <div class="pie-desc">Brooklyn's finest export. A meat lover's manifesto — smoky, salty, and absolutely relentless.</div>
+          <div class="pie-ingredients">
+            <span class="ing-tag">Pepperoni</span>
+            <span class="ing-tag">Bacon</span>
+            <span class="ing-tag">Prosciutto</span>
+            <span class="ing-tag">Italian Sausage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-specials">
+      <div class="specials-grid">
+        <div class="special-card reveal">
+          <div class="special-icon">🍗</div>
+          <div class="special-name">Hot Wings</div>
+          <div class="special-detail">12 wings, tossed in our house hot sauce. A bar essential.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-1">
+          <div class="special-icon">🥗</div>
+          <div class="special-name">Salads</div>
+          <div class="special-detail">Fresh, outstanding salads to complement your pie.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-2">
+          <div class="special-icon">🍮</div>
+          <div class="special-name">Cannoli</div>
+          <div class="special-detail">Crispy shell, creamy ricotta filling. The real New York finish.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-3">
+          <div class="special-icon">🍰</div>
+          <div class="special-name">NY Cheesecake</div>
+          <div class="special-detail">Dense, velvety, authentic. Slice of New York on your plate.</div>
+        </div>
+        <div class="special-card reveal">
+          <div class="special-icon">🍷</div>
+          <div class="special-name">Happy Hour</div>
+          <div class="special-detail">4–7pm Daily & All Day Sunday. Daily drink specials in our Old World bar.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-1">
+          <div class="special-icon">🎮</div>
+          <div class="special-name">Game Day</div>
+          <div class="special-detail">Cold drinks, hot pizza, great seats. The ultimate sports bar in the historic district.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-2">
+          <div class="special-icon">🍺</div>
+          <div class="special-name">Old World Bar</div>
+          <div class="special-detail">Walk past the counter and escape into our beloved "Old World" dining area.</div>
+        </div>
+        <div class="special-card reveal reveal-delay-3">
+          <div class="special-icon">🎂</div>
+          <div class="special-name">Tiramisu</div>
+          <div class="special-detail">The Italian close. Rich espresso, mascarpone, cocoa — perfection.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ORDER MODULE ═══ -->
+<section id="order">
+  <div class="order-bg"></div>
+  <div class="order-inner">
+    <div class="reveal">
+      <div class="order-eyebrow">Ready to Order</div>
+      <h2 class="order-title">
+        Get it<br><em>Hot.</em>
+      </h2>
+      <p class="order-desc">Fresh-made daily. Pickup or delivery. The same legendary pies, at your door or at our bar on Congress Street.</p>
+      <div class="order-features">
+        <div class="order-feature"><div class="feature-dot"></div>Hand-tossed daily fresh dough</div>
+        <div class="order-feature"><div class="feature-dot"></div>100% Grande whole-milk mozzarella on every pie</div>
+        <div class="order-feature"><div class="feature-dot"></div>Pickup ready — call (520) 882-7499</div>
+        <div class="order-feature"><div class="feature-dot"></div>Open until midnight Sunday–Thursday, 3am Fri & Sat</div>
+      </div>
+      <a href="tel:5208827499" class="btn-primary">Call to Order: (520) 882-7499</a>
+    </div>
+
+    <div class="order-card reveal reveal-delay-2">
+      <div class="order-card-img">
+        <img id="orderCardImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg" alt="Empire Pizza">
+        <div class="order-card-img-overlay"></div>
+        <div class="order-card-img-label">
+          <div class="order-card-img-title" id="orderPizzaName">Pepperoni</div>
+          <div class="order-card-img-sub">20&quot; Whole Pie &middot; Feeds 3&ndash;4</div>
+        </div>
+      </div>
+      <div class="order-card-body">
+        <div class="order-card-stripe">
+          <div class="order-card-logo">Empire <span>&#9679;</span> Pizza</div>
+          <div class="order-card-tag">Downtown Tucson</div>
+        </div>
+
+        <!-- Pizza Selector -->
+        <div class="pizza-selector-label">Choose Your Pie</div>
+        <div class="pizza-chips" id="pizzaChips"></div>
+        <div class="order-ing-row" id="orderIngRow"></div>
+
+        <!-- Fulfillment -->
+        <div class="fulfilment-opts">
+          <div class="f-opt" onclick="selectFulfil(this)">
+            <div class="f-radio"><div class="f-radio-dot"></div></div>
+            <div>
+              <div class="f-info-label">Delivery</div>
+              <div class="f-info-sub">Hot to your door</div>
+            </div>
+          </div>
+          <div class="f-opt active" onclick="selectFulfil(this)">
+            <div class="f-radio"><div class="f-radio-dot"></div></div>
+            <div>
+              <div class="f-info-label">Pickup</div>
+              <div class="f-info-sub">137 E Congress St &middot; Tucson AZ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart items -->
+        <div id="cartItems" class="cart-items"></div>
+
+        <!-- Action bar -->
+        <div class="order-action-bar">
+          <div class="qty-ctrl">
+            <button class="qty-b" onclick="updateQty(-1)">&minus;</button>
+            <div class="qty-divider"></div>
+            <div class="qty-display" id="qtyDisplay">1</div>
+            <div class="qty-divider"></div>
+            <button class="qty-b" onclick="updateQty(1)">+</button>
+          </div>
+          <button class="add-btn" onclick="handleAdd(event)">
+            <span class="add-btn-label">Add to Order</span>
+            <span class="add-btn-price" id="totalDisplay">$25.00</span>
+          </button>
+        </div>
+
+        <!-- Running total -->
+        <div class="cart-total-row" id="cartTotalRow" style="display:none">
+          <span class="cart-total-label">Order Total</span>
+          <span class="cart-total-amt" id="cartTotalAmt">$0.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCATION ═══ -->
+<section id="location">
+  <img class="location-bg-img" id="locationBgImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/08_congress_street_storefront.jpg" alt="">
+
+  <div class="location-inner">
+
+    <!-- LEFT: Hours -->
+    <div class="location-left reveal">
+      <div class="location-eyebrow">Hours &amp; Visit</div>
+      <h2 class="location-title">Congress<br>Street.</h2>
+
+      <div class="hours-list">
+        <div class="hours-row">
+          <span class="hours-day">Sunday – Thursday</span>
+          <span class="hours-time">11am – Midnight</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Friday – Saturday</span>
+          <span class="hours-time">11am – 3am <span class="hours-late">Late Night</span></span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Happy Hour</span>
+          <span class="hours-time">4pm – 7pm <span class="hours-late">+ All Day Sun</span></span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Phone</span>
+          <span class="hours-time">(520) 882-7499</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-divider"></div>
+
+    <!-- RIGHT: Address + CTAs -->
+    <div class="location-right reveal reveal-delay-2">
+
+      <div class="loc-address-block">
+        <div class="info-label">Where to Find Us</div>
+        <div class="info-text">137 E Congress St<br>Tucson, AZ 85701</div>
+        <div class="info-sub">Historic Congress District · Downtown Tucson</div>
+      </div>
+
+      <div class="loc-address-block">
+        <div class="info-label">The Neighborhood</div>
+        <div class="info-text">Historic Congress<br>District</div>
+        <div class="info-sub">The cultural heart of downtown — where great pizza belongs.</div>
+      </div>
+
+      <div class="location-ctas">
+        <a href="tel:5208827499" class="loc-btn-primary">Call for Pickup →</a>
+        <a href="https://maps.google.com/?q=137+E+Congress+St+Tucson+AZ" target="_blank" class="loc-btn-ghost">Get Directions →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ BANNER ═══ -->
+<section id="full-banner">
+  <img class="banner-img" id="bannerImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/03_pepperoni_logo.jpg" alt="Empire Pizza">
+  <div class="banner-overlay"></div>
+
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">EMPIRE<span>●</span>PIZZA</div>
+      <div class="footer-tagline">New York soul. Downtown Tucson heart.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#hero">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#location">Visit</a>
+      <a href="tel:5208827499">(520) 882-7499</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Empire Pizza. All Rights Reserved.</span>
+    <span>137 E Congress St · Tucson, AZ 85701</span>
+  </div>
+</footer>
+
+<script>
+const IMG = {
+  img1: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/01_bensonhurst.jpg`,
+  img2: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/02_sauce.jpg`,
+  img3: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/03_pepperoni_logo.jpg`,
+  img4: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/04_cheese.jpg`,
+  img5: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/05_margherita.jpg`,
+  img6: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg`,
+  img7: `https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/07_pepperoni_clean.jpg`,
+};
+
+// ─── Inject Images ───
+// VERIFIED MAP: img1=Bensonhurst, img2=Sauce, img3=Pepperoni(watermark), img4=Cheese, img5=Margherita, img6=Elote, img7=Pepperoni(screenshot)
+document.getElementById('heroImg0').src = IMG.img6;     // Elote — bright, inviting, THE hero shot
+document.getElementById('heroImg1').src = IMG.img5;     // Margherita — brick oven steam
+document.getElementById('heroImg2').src = IMG.img1;     // Bensonhurst — loaded meat lovers
+document.getElementById('identityImg1').src = IMG.img6; // Elote — story section
+document.getElementById('identityImg2').src = IMG.img4; // Cheese — overhead clean
+document.getElementById('galleryImg1').src = IMG.img1;  // Bensonhurst (large featured slot)
+document.getElementById('eloteMenuImg').src = IMG.img6; // THE ELOTE ✓ correct
+document.getElementById('galleryImg2').src = IMG.img6;  // Elote
+document.getElementById('galleryImg3').src = IMG.img5;  // Margherita
+document.getElementById('galleryImg4').src = IMG.img1;  // Bensonhurst
+document.getElementById('galleryImg5').src = IMG.img4;  // Cheese
+document.getElementById('orderCardImg').src = IMG.img6; // Elote leads order card
+document.getElementById('bannerImg').src = IMG.img3;    // Pepperoni+logo stamp — banner only
+document.getElementById('locationBgImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/08_congress_street_storefront.jpg'; // Congress St storefront // NYC skyline at night
+
+// ─── Hero Slideshow ───
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  // restart zoom animation
+  const img = slides[currentSlide].querySelector('img');
+  img.style.animation = 'none';
+  img.offsetHeight;
+  img.style.animation = '';
+}
+
+setInterval(() => {
+  goSlide((currentSlide + 1) % slides.length);
+}, 6000);
+
+// ─── Menu Tabs ───
+function switchTab(id, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── Fulfillment Selection ───
+function selectFulfil(el) {
+  document.querySelectorAll('.f-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─── Pizza Data ───
+const PIES = [
+  { id:0, name:'Cheese',       img: IMG.img4, price:20, ingredients:['Grande Mozz','Tomato Sauce'] },
+  { id:1, name:'Pepperoni',    img: IMG.img3, price:25, ingredients:['Pepperoni','Grande Mozz','Tomato Sauce'] },
+  { id:2, name:'Margherita',   img: IMG.img5, price:24, ingredients:['Garlic','Fresh Basil','Fresh Mozz'] },
+  { id:3, name:'Chelsea',      img: IMG_CHELSEA, price:26, ingredients:['Mushroom','Green Pepper','Onion','Kalamata Olive','Garlic'] },
+  { id:4, name:'Mulberry St.', img: IMG_MULBERRY, price:27, ingredients:['Pepperoni','Italian Sausage','Green Pepper','Onion','Mushrooms'] },
+  { id:5, name:'Bensonhurst',  img: IMG.img1, price:28, ingredients:['Pepperoni','Bacon','Prosciutto','Italian Sausage'] },
+  { id:6, name:'The Elote ★',  img: IMG.img6, price:26, ingredients:['Roasted Corn','Cotija Cheese','Fresh Cilantro','Chipotle Mayo'], featured:true },
+];
+
+const IMG_CHELSEA = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/09_chelsea.jpg';
+const IMG_MULBERRY = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/10_mulberry_street.jpg';
+let currentPie = 1; // default Pepperoni
+let qty = 1;
+const cart = []; // { pie, qty }
+
+function buildChips() {
+  const wrap = document.getElementById('pizzaChips');
+  PIES.forEach((pie, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'pizza-chip' + (pie.featured ? ' featured-chip' : '') + (i === currentPie ? ' active' : '');
+    btn.textContent = pie.name;
+    btn.onclick = () => selectPie(i);
+    wrap.appendChild(btn);
+  });
+}
+
+function selectPie(i) {
+  currentPie = i;
+  const pie = PIES[i];
+  document.querySelectorAll('.pizza-chip').forEach((c,idx) => {
+    c.classList.toggle('active', idx === i);
+  });
+  // swap image with fade
+  const img = document.getElementById('orderCardImg');
+  img.style.opacity = 0;
+  setTimeout(() => { img.src = pie.img; img.style.opacity = 1; }, 200);
+  img.style.transition = 'opacity 0.2s';
+  document.getElementById('orderPizzaName').textContent = pie.name;
+  // update price
+  qty = 1;
+  document.getElementById('qtyDisplay').textContent = 1;
+  document.getElementById('totalDisplay').textContent = '$' + pie.price.toFixed(2);
+  // ingredients
+  const row = document.getElementById('orderIngRow');
+  row.innerHTML = pie.ingredients.map(t => `<span class="order-ing-tag">${t}</span>`).join('');
+}
+
+function updateQty(delta) {
+  qty = Math.max(1, qty + delta);
+  const display = document.getElementById('qtyDisplay');
+  display.textContent = qty;
+  display.classList.remove('flash');
+  void display.offsetWidth;
+  display.classList.add('flash');
+  document.getElementById('totalDisplay').textContent = '$' + (PIES[currentPie].price * qty).toFixed(2);
+}
+
+function handleAdd(e) {
+  const btn = e.currentTarget;
+  // ripple
+  const circle = document.createElement('span');
+  const d = Math.max(btn.clientWidth, btn.clientHeight);
+  const rect = btn.getBoundingClientRect();
+  circle.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX-rect.left-d/2}px;top:${e.clientY-rect.top-d/2}px;`;
+  circle.classList.add('ripple');
+  btn.appendChild(circle);
+  circle.addEventListener('animationend', () => circle.remove());
+
+  // Add to cart
+  const pie = PIES[currentPie];
+  const existing = cart.find(c => c.pie.id === pie.id);
+  if (existing) { existing.qty += qty; }
+  else { cart.push({ pie, qty }); }
+  renderCart();
+
+  // Flash feedback
+  const label = btn.querySelector('.add-btn-label');
+  label.textContent = '✓ Added!';
+  setTimeout(() => label.textContent = 'Add to Order', 1800);
+
+  qty = 1;
+  document.getElementById('qtyDisplay').textContent = 1;
+  document.getElementById('totalDisplay').textContent = '$' + pie.price.toFixed(2);
+}
+
+function renderCart() {
+  const wrap = document.getElementById('cartItems');
+  const totalRow = document.getElementById('cartTotalRow');
+  wrap.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, idx) => {
+    const subtotal = item.pie.price * item.qty;
+    total += subtotal;
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <span class="cart-item-name">${item.pie.name}</span>
+      <span class="cart-item-qty">x${item.qty}</span>
+      <span class="cart-item-price">$${subtotal.toFixed(2)}</span>
+      <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
+    `;
+    wrap.appendChild(el);
+  });
+  if (cart.length > 0) {
+    totalRow.style.display = 'flex';
+    document.getElementById('cartTotalAmt').textContent = '$' + total.toFixed(2);
+  } else {
+    totalRow.style.display = 'none';
+  }
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  renderCart();
+}
+
+// Init
+buildChips();
+selectPie(currentPie);
+
+// ─── Scroll Reveals ───
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── Lightbox ───
+const LB_ITEMS = [
+  { imgId: 'galleryImg1', title: 'The Empire Signature', sub: 'Hand-Tossed · Grande Cheese · Daily Fresh' },
+  { imgId: 'galleryImg2', title: 'The Elote',            sub: "Tucson's Favorite · As Seen on Tucson Foodie" },
+  { imgId: 'galleryImg3', title: 'The Chelsea',          sub: 'Mushroom · Pepper · Olive · Garlic' },
+  { imgId: 'galleryImg4', title: 'The Bensonhurst',      sub: 'Pepperoni · Bacon · Prosciutto · Sausage' },
+  { imgId: 'galleryImg5', title: 'Mulberry St.',         sub: 'Pepperoni · Sausage · Mushroom · Pepper' },
+];
+
+let lbCurrent = 0;
+
+function openLightbox(idx) {
+  lbCurrent = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbStep(dir) {
+  lbCurrent = (lbCurrent + dir + LB_ITEMS.length) % LB_ITEMS.length;
+  const img = document.getElementById('lightbox-img');
+  img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
+  renderLightbox();
+}
+
+function renderLightbox() {
+  const item = LB_ITEMS[lbCurrent];
+  const src = document.getElementById(item.imgId).src;
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lb-title').textContent = item.title;
+  document.getElementById('lb-sub').textContent = item.sub;
+}
+
+// Close on backdrop click
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lbStep(1);
+  if (e.key === 'ArrowLeft')  lbStep(-1);
+});
+
+</script>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <button id="lightbox-prev" onclick="lbStep(-1)">&#8592;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" onclick="lbStep(1)">&#8594;</button>
+  <div id="lightbox-caption">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-sub" id="lb-sub"></div>
+  </div>
+</div>
+
+</body>
+</html>
