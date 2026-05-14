@@ -72,14 +72,14 @@ body::before {
 .hero-slide img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transform: scale(1.08);
+  transform: scale(1.03);
   animation: heroZoom 12s ease-in-out forwards;
   filter: brightness(1.12) saturate(1.25) contrast(1.05);
 }
 
 @keyframes heroZoom {
-  from { transform: scale(1.08); }
-  to { transform: scale(1.0); }
+  from { transform: scale(1.03); }
+  to { transform: scale(0.97); }
 }
 
 .hero-overlay {
@@ -1448,7 +1448,7 @@ footer {
 <section id="hero">
   <div class="hero-slides">
     <div class="hero-slide active" id="slide-0">
-      <img src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/08_congress_street_storefront.jpg" alt="Empire Pizza" id="heroImg0">
+      <img src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/empire-storefront.png" alt="Empire Pizza" id="heroImg0">
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-slide" id="slide-1">
@@ -1571,7 +1571,7 @@ footer {
 
   <div class="gallery-grid">
     <div class="gallery-card reveal" onclick="openLightbox(0)">
-      <img id="galleryImg1" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/07_pepperoni_clean.jpg" alt="Signature Pizza">
+      <img id="galleryImg1" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png" alt="Signature Pizza">
       <div class="gallery-card-overlay">
         <div>
           <div class="gallery-card-label">The Empire<br>Signature</div>
@@ -1785,7 +1785,7 @@ footer {
 
     <div class="order-card reveal reveal-delay-2">
       <div class="order-card-img">
-        <img id="orderCardImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/07_pepperoni_clean.jpg" alt="Empire Pizza">
+        <img id="orderCardImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png" alt="Empire Pizza">
         <div class="order-card-img-overlay"></div>
         <div class="order-card-img-label">
           <div class="order-card-img-title" id="orderPizzaName">Pepperoni</div>
@@ -1851,7 +1851,7 @@ footer {
 
 <!-- ═══ LOCATION ═══ -->
 <section id="location">
-  <img class="location-bg-img" id="locationBgImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/08_congress_street_storefront.jpg" alt="">
+  <img class="location-bg-img" id="locationBgImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/empire-storefront.png" alt="">
 
   <div class="location-inner">
 
@@ -1908,7 +1908,7 @@ footer {
 
 <!-- ═══ BANNER ═══ -->
 <section id="full-banner">
-  <img class="banner-img" id="bannerImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/03_pepperoni_logo.jpg" alt="Empire Pizza">
+  <img class="banner-img" id="bannerImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png" alt="Empire Pizza">
   <div class="banner-overlay"></div>
 
 </section>
@@ -1942,7 +1942,7 @@ const IMG = {
   img4: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/04_cheese.jpg',
   img5: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/05_margherita.jpg',
   img6: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/06_elote.jpg',
-  img7: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/07_pepperoni_clean.jpg',
+  img7: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png',
 };;
 
 // ─── Inject Images ───
@@ -1955,12 +1955,12 @@ document.getElementById('identityImg2').src = IMG.img4; // Cheese — overhead c
 document.getElementById('galleryImg1').src = IMG.img1;  // Bensonhurst (large featured slot)
 document.getElementById('eloteMenuImg').src = IMG.img6; // THE ELOTE ✓ correct
 document.getElementById('galleryImg2').src = IMG.img6;  // Elote
-document.getElementById('galleryImg3').src = IMG.img5;  // Margherita
+document.getElementById('galleryImg3').src = IMG_CHELSEA;  // Chelsea
 document.getElementById('galleryImg4').src = IMG.img1;  // Bensonhurst
-document.getElementById('galleryImg5').src = IMG.img4;  // Cheese
+document.getElementById('galleryImg5').src = IMG_MULBERRY;  // Mulberry St.
 document.getElementById('orderCardImg').src = IMG.img6; // Elote leads order card
-document.getElementById('bannerImg').src = IMG.img3;    // Pepperoni+logo stamp — banner only
-document.getElementById('locationBgImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/08_congress_street_storefront.jpg'; // Congress St storefront // NYC skyline at night
+document.getElementById('bannerImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png';    // Pepperoni+logo stamp — banner only
+document.getElementById('locationBgImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/empire-storefront.png'; // Congress St storefront // NYC skyline at night
 
 // ─── Hero Slideshow ───
 let currentSlide = 0;
