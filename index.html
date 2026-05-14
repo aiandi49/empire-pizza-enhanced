@@ -1785,7 +1785,7 @@ footer {
 
     <div class="order-card reveal reveal-delay-2">
       <div class="order-card-img">
-        <img id="orderCardImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png" alt="Empire Pizza">
+        <img id="orderCardImg" src="https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pepperoni.png?v=2" alt="Empire Pizza">
         <div class="order-card-img-overlay"></div>
         <div class="order-card-img-label">
           <div class="order-card-img-title" id="orderPizzaName">Pepperoni</div>
@@ -1934,6 +1934,18 @@ footer {
   </div>
 </footer>
 
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <button id="lightbox-prev" onclick="lbStep(-1)">&#8592;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" onclick="lbStep(1)">&#8594;</button>
+  <div id="lightbox-caption">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-sub" id="lb-sub"></div>
+  </div>
+</div>
+
 <script>
 const IMG = {
   img1: 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/01_bensonhurst.jpg',
@@ -1958,7 +1970,7 @@ document.getElementById('galleryImg2').src = IMG.img6;  // Elote
 document.getElementById('galleryImg3').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/09_chelsea.jpg';  // Chelsea
 document.getElementById('galleryImg4').src = IMG.img1;  // Bensonhurst
 document.getElementById('galleryImg5').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/10_mulberry_street.jpg';  // Mulberry St.
-document.getElementById('orderCardImg').src = IMG.img6; // Elote leads order card
+document.getElementById('orderCardImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pepperoni.png?v=2'; // Pepperoni leads order card
 document.getElementById('bannerImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/pizza-logo.png';    // Pepperoni+logo stamp — banner only
 document.getElementById('locationBgImg').src = 'https://cwtqstdxiythhnedpqtp.supabase.co/storage/v1/object/public/empire_pizza_images/empire-storefront.png'; // Congress St storefront // NYC skyline at night
 
@@ -2173,7 +2185,8 @@ function renderLightbox() {
 }
 
 // Close on backdrop click
-document.getElementById('lightbox').addEventListener('click', function(e) {
+const _lb = document.getElementById('lightbox');
+if (_lb) _lb.addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
 
@@ -2188,17 +2201,6 @@ document.addEventListener('keydown', function(e) {
 
 </script>
 
-<!-- ═══ LIGHTBOX ═══ -->
-<div id="lightbox" role="dialog" aria-modal="true">
-  <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
-  <button id="lightbox-prev" onclick="lbStep(-1)">&#8592;</button>
-  <img id="lightbox-img" src="" alt="">
-  <button id="lightbox-next" onclick="lbStep(1)">&#8594;</button>
-  <div id="lightbox-caption">
-    <div class="lb-title" id="lb-title"></div>
-    <div class="lb-sub" id="lb-sub"></div>
-  </div>
-</div>
 
 </body>
 </html>
